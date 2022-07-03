@@ -1,17 +1,23 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 require_once 'vendor/autoload.php';
+
 if(isset($_POST['send'])){
 
     try {
     $receiver = $_POST['receiver'];
-    $mail = $_POST['mail'];
+    //$email = $_POST['mail'];
     $msg = $_POST['message'];
-    $messagebird = new MessageBird\Client('dn3dLyDbz5p6sewbt51yHp71q');//use MessageBird live key
+    $messagebird = new MessageBird\Client('vNwLibeZOnPetAxwHJeXWmmiQ');//use live key
     $message = new MessageBird\Objects\Message;
     $message->originator = '+254707621524';
     $message->recipients = [ $receiver];
     $encryption_key = "hs$[9FwR}}";//set key here
-    $message->body = "Decrypt message using this key:<br>".$encryption_key;
+    $message->body = "Decrypt message using this key:".$encryption_key;
     $response = $messagebird->messages->create($message);
     var_dump($response);
 
@@ -22,19 +28,20 @@ if(isset($_POST['send'])){
 
     $mail = new PHPMailer(true);
 
-    $mail->SMTPDebug = 1;
+    $mail->SMTPDebug = 0;
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587;
+    $mail->Port = 465;
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = 'ssl';
     $mail->Username = 'highrise696@gmail.com';
     $mail->Password = 'Highrise123456';
     
-    $mail->setFrom('highrise696@gmail.com');
-    $mail->FromName = "Highrise";
+    $mail->From= 'highrise696@gmail.com';
+    $mail->FromName ='Highrise';
     $mail->addAddress($_POST['mail']);
-    
+    $mail->addAddress('yegonronald9720@gmail.com');
+ 
     $mail->isHTML(true);
     $mail->Subject='Highrise Encrpyted Message';
     $mail->Body='<h1>The encrypted message is:<br>'.$encryption.'</h1>';
@@ -47,6 +54,6 @@ if(isset($_POST['send'])){
     } catch(Exception $e){
             echo "Message could not be sent! Error: {$mail->ErrorInfo}"; 
     }
-     }
+}
 
 ?>
