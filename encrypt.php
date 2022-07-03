@@ -11,7 +11,7 @@ if(isset($_POST['send'])){
     $message->originator = '+254707621524';
     $message->recipients = [ $receiver];
     $encryption_key = "hs$[9FwR}}";//set key here
-    $message->body = $encryption_key;
+    $message->body = "Decrypt message using this key:<br>".$encryption_key;
     $response = $messagebird->messages->create($message);
     var_dump($response);
 
