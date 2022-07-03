@@ -1,7 +1,7 @@
 <?php
 
 $key = $_POST['secret_key'];
-$decryption_key = "hello";
+$decryption_key = "hs$[9FwR}}";
 
 if(isset($_POST['decrypt'])&&($key==$decryption_key)){
     $msg = $_POST['text'];
@@ -13,6 +13,7 @@ if(isset($_POST['decrypt'])&&($key==$decryption_key)){
 
     echo "Decrypted Data :" .$decryption;
     echo "<br>";
+    echo "Thank you for using Highrise to decrypt";
 
 }
 

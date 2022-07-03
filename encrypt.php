@@ -10,7 +10,7 @@ if(isset($_POST['send'])){
     $message = new MessageBird\Objects\Message;
     $message->originator = '+254707621524';
     $message->recipients = [ $receiver];
-    $encryption_key = "hello";//set password here
+    $encryption_key = "hs$[9FwR}}";//set key here
     $message->body = $encryption_key;
     $response = $messagebird->messages->create($message);
     var_dump($response);
@@ -43,6 +43,8 @@ if(isset($_POST['send'])){
     
     $mail->send();
     echo 'Message has been sent!';
+    echo "<br>";
+    echo "Thank you for using Highrise to encrypt";
     
     } catch(Exception $e){
             echo "Message could not be sent! Error: {$mail->ErrorInfo}"; 
