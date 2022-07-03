@@ -6,7 +6,7 @@ if(isset($_POST['send'])){
     $receiver = $_POST['receiver'];
     $mail = $_POST['mail'];
     $msg = $_POST['message'];
-    $messagebird = new MessageBird\Client('dn3dLyDbz5p6sewbt51yHp71q');//use live key
+    $messagebird = new MessageBird\Client('dn3dLyDbz5p6sewbt51yHp71q');//use MessageBird live key
     $message = new MessageBird\Objects\Message;
     $message->originator = '+254707621524';
     $message->recipients = [ $receiver];
@@ -28,18 +28,16 @@ if(isset($_POST['send'])){
     $mail->Port = 587;
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = 'ssl';
-    $mail->Username = 'yegonronald9720@gmail.com';
-    $mail->Password = 'R0n.mecer972ostrath';
+    $mail->Username = 'highrise696@gmail.com';
+    $mail->Password = 'Highrise123456';
     
-    $mail->setFrom($_POST['mail']);
+    $mail->setFrom('highrise696@gmail.com');
     $mail->FromName = "Highrise";
-    $mail->addAddress('yegonronald9720@gmail.com');
-    $mail->addReplyTo($_POST['mail']);
+    $mail->addAddress($_POST['mail']);
     
     $mail->isHTML(true);
-    $mail->Subject='Form Submission:';
-    $mail->Body='<h1>Name :'.$_POST['mail'].'<br>Email: '.$_POST['mail']. '<br>Message: 
-    '.$encryption.'</h1>';
+    $mail->Subject='Highrise Encrpyted Message';
+    $mail->Body='<h1>The encrypted message is:<br>'.$encryption.'</h1>';
     
     $mail->send();
     echo 'Message has been sent!';
